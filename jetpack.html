@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excursão Betel & Sul do Brasil</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .background-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+        }
+
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .floating-element {
+            position: absolute;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            animation: float 15s infinite ease-in-out;
+        }
+
+        .floating-element:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            top: 60%;
+            right: 10%;
+            animation-delay: 5s;
+        }
+
+        .floating-element:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-20px) rotate(90deg); }
+            50% { transform: translateY(-40px) rotate(180deg); }
+            75% { transform: translateY(-20px) rotate(270deg); }
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 60px;
+            animation: fadeInDown 1s ease-out;
+            position: relative;
+            z-index: 2;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            background: linear-gradient(45deg, #ffffff, #f0f8ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        .dates-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.25);
+            padding: 20px 40px;
+            border-radius: 50px;
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255,255,255,0.3);
+            font-size: 1.2rem;
+            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .dates-badge:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .intro-video {
+            text-align: center;
+            margin: 50px 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .video-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+            color: white;
+            padding: 20px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(255,107,107,0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .video-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.6s;
+        }
+
+        .video-btn:hover::before {
+            left: 100%;
+        }
+
+        .video-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255,107,107,0.5);
+        }
+
+        .highlights {
+            background: rgba(255,255,255,0.95);
+            border-radius: 30px;
+            padding: 50px;
+            margin: 60px 0;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            backdrop-filter: blur(20px);
+        }
+
+        .highlights h2 {
+            color: #333;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .highlight-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .highlight-item {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 35px 25px;
+            border-radius: 20px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .highlight-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .highlight-item:hover::before {
+            opacity: 1;
+        }
+
+        .highlight-item:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(102,126,234,0.4);
+        }
+
+        .highlight-item h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .highlight-item p {
+            font-size: 1rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .timeline {
+            position: relative;
+            margin: 80px 0;
+            z-index: 2;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 6px;
+            background: linear-gradient(to bottom, #4ecdc4, #44a08d, #667eea);
+            transform: translateX(-50%);
+            z-index: 1;
+            border-radius: 3px;
+            box-shadow: 0 0 20px rgba(78,205,196,0.3);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin: 80px 0;
+            cursor: pointer;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: 55%;
+            text-align: left;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-right: 55%;
+            text-align: right;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 30px;
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg, #4ecdc4, #44a08d);
+            border-radius: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            border: 6px solid white;
+            box-shadow: 0 6px 20px rgba(78,205,196,0.4);
+            transition: all 0.4s ease;
+        }
+
+        .timeline-item:hover .timeline-dot {
+            transform: translateX(-50%) scale(1.4);
+            box-shadow: 0 8px 25px rgba(78,205,196,0.6);
+        }
+
+        .timeline-content {
+            background: rgba(255,255,255,0.95);
+            padding: 0;
+            border-radius: 25px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(20px);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::before {
+            content: '';
+            position: absolute;
+            left: -15px;
+            top: 30px;
+            width: 0;
+            height: 0;
+            border-top: 15px solid transparent;
+            border-bottom: 15px solid transparent;
+            border-right: 15px solid rgba(255,255,255,0.95);
+            z-index: 2;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::before {
+            content: '';
+            position: absolute;
+            right: -15px;
+            top: 30px;
+            width: 0;
+            height: 0;
+            border-top: 15px solid transparent;
+            border-bottom: 15px solid transparent;
+            border-left: 15px solid rgba(255,255,255,0.95);
+            z-index: 2;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.2);
+        }
+
+        .timeline-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 25px 25px 0 0;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover .timeline-image {
+            transform: scale(1.05);
+        }
+
+        .timeline-info {
+            padding: 30px;
+        }
+
+        .date-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(102,126,234,0.3);
+        }
+
+        .timeline-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .timeline-description {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        .timeline-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            margin-top: 20px;
+            padding-top: 0;
+            border-top: 2px solid transparent;
+        }
+
+        .timeline-item.expanded .timeline-details {
+            max-height: 400px;
+            padding-top: 20px;
+            border-top: 2px solid #f0f0f0;
+        }
+
+        .timeline-details p {
+            margin-bottom: 12px;
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .expand-btn {
+            background: linear-gradient(135deg, #4ecdc4, #44a08d);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+            box-shadow: 0 4px 15px rgba(78,205,196,0.3);
+        }
+
+        .expand-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(78,205,196,0.4);
+            background: linear-gradient(135deg, #44a08d, #4ecdc4);
+        }
+
+        .link-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff9f43, #ff8c42);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 18px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin: 8px 8px 8px 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(255,159,67,0.3);
+        }
+
+        .link-btn:hover {
+            background: linear-gradient(135deg, #ff8c42, #ff7675);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(255,159,67,0.4);
+        }
+
+        .contact-section {
+            background: rgba(255,255,255,0.95);
+            border-radius: 30px;
+            padding: 50px;
+            margin: 80px 0;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            position: relative;
+            z-index: 2;
+            backdrop-filter: blur(20px);
+        }
+
+        .contact-section h2 {
+            color: #333;
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        .contact-section p {
+            color: #666;
+            margin-bottom: 35px;
+            font-size: 1.1rem;
+        }
+
+        .contact-btn {
+            background: linear-gradient(135deg, #25d366, #22c55e);
+            color: white;
+            padding: 18px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 600;
+            display: inline-block;
+            margin: 15px;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(37,211,102,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.6s;
+        }
+
+        .contact-btn:hover::before {
+            left: 100%;
+        }
+
+        .contact-btn:hover {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(37,211,102,0.4);
+        }
+
+        .contact-info {
+            margin-top: 30px;
+            padding: 25px;
+            background: linear-gradient(135deg, rgba(102,126,234,0.1), rgba(118,75,162,0.1));
+            border-radius: 20px;
+            border: 1px solid rgba(102,126,234,0.2);
+        }
+
+        .contact-info p {
+            margin-bottom: 10px;
+            color: #555;
+            font-weight: 500;
+        }
+
+        .location-icon {
+            font-size: 1.8rem;
+            color: #ff6b6b;
+        }
+
+        .flag {
+            font-size: 2rem;
+        }
+
+        /* Animações */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .timeline-item:nth-child(1) { animation-delay: 0.1s; }
+        .timeline-item:nth-child(2) { animation-delay: 0.2s; }
+        .timeline-item:nth-child(3) { animation-delay: 0.3s; }
+        .timeline-item:nth-child(4) { animation-delay: 0.4s; }
+        .timeline-item:nth-child(5) { animation-delay: 0.5s; }
+        .timeline-item:nth-child(6) { animation-delay: 0.6s; }
+        .timeline-item:nth-child(7) { animation-delay: 0.7s; }
+        .timeline-item:nth-child(8) { animation-delay: 0.8s; }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+
+            .header .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .dates-badge {
+                padding: 15px 25px;
+                font-size: 1rem;
+            }
+
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-dot {
+                left: 30px;
+            }
+
+            .timeline-item:nth-child(odd) .timeline-content,
+            .timeline-item:nth-child(even) .timeline-content {
+                margin-left: 70px;
+                margin-right: 0;
+                text-align: left;
+            }
+
+            .timeline-item:nth-child(odd) .timeline-content::before,
+            .timeline-item:nth-child(even) .timeline-content::before {
+                left: -15px;
+                right: auto;
+                border-right: 15px solid rgba(255,255,255,0.95);
+                border-left: none;
+            }
+
+            .timeline-title {
+                font-size: 1.3rem;
+            }
+
+            .timeline-image {
+                height: 150px;
+            }
+
+            .timeline-info {
+                padding: 20px;
+            }
+
+            .highlight-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .highlights, .contact-section {
+                padding: 30px 20px;
+            }
+
+            .highlights h2, .contact-section h2 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Efeitos especiais */
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            animation: sparkle 2s infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+
+        .timeline-item:hover .sparkle {
+            animation-duration: 1s;
+        }
+    </style>
+</head>
+<body>
+    <div class="background-pattern"></div>
+    
+    <div class="floating-elements">
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>🇧🇷 Excursão Betel & Sul do Brasil</h1>
+            <p class="subtitle">Uma jornada inesquecível pelos destinos mais incríveis do país</p>
+            <div class="dates-badge">
+                📅 8 a 15 de Novembro de 2026
+            </div>
+            <div class="sparkle" style="top: 20px; left: 30%;"></div>
+            <div class="sparkle" style="top: 50px; right: 25%;"></div>
+            <div class="sparkle" style="top: 80px; left: 60%;"></div>
+        </div>
+
+        <div class="intro-video">
+            <a href="https://www.jw.org/pt/biblioteca/videos/#pt/mediaitems/pub-jwb-092_15_VIDEO" target="_blank" class="video-btn">
+                🎥 Assista ao Vídeo Introdutório
+            </a>
+        </div>
+
+        <div class="highlights">
+            <h2>✨ Destaques da Excursão</h2>
+            <div class="highlight-grid">
+                <div class="highlight-item">
+                    <h3>🏛️ Visita à Betel</h3>
+                    <p>Momento especial da nossa jornada espiritual com visita guiada e almoço no refeitório</p>
+                </div>
+                <div class="highlight-item">
+                    <h3>🌊 Cataratas do Iguaçu</h3>
+                    <p>Uma das Sete Maravilhas da Natureza com trilhas deslumbrantes</p>
+                </div>
+                <div class="highlight-item">
+                    <h3>🛍️ Compras no Paraguai</h3>
+                    <p>Ciudad del Este com os melhores preços e variedade incrível</p>
+                </div>
+                <div class="highlight-item">
+                    <h3>🚂 Trem da Serra do Mar</h3>
+                    <p>Um dos passeios de trem mais bonitos do mundo</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item" onclick="toggleDetails(this)">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <img src="https://images.unsplash.com/photo-1570125909232-eb263c188f7e?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8YnVzfGVufDB8fDB8fHww" alt="Ônibus de viagem" class="timeline-image">
+                    <div class="timeline-info">
+                        <div class="date-badge">🗓️ 08 de Novembro (Domingo)</div>
+                        <div class="timeline-title">
+                            <span class="location-icon">🚌</span>
+                            <span>Partida - Santa Cruz Cabrália</span>
+                        </div>
+                        <div class="timeline-description">
+                            Início da nossa aventura! Saída às 07h com paradas para embarque ao longo do trajeto. Prepare-se para uma jornada inesquecível pelos destinos mais incríveis do Brasil!
+                        </div>
+                        <button class="expand-btn">Ver mais detalhes</button>
+                        <div class="timeline-details">
+                            <p><strong>📍 Local de saída:</strong> Santa Cruz Cabrália e Porto Seguro</p>
+                            <p><strong>⏰ Horário:</strong> 07:00h da manhã</p>
+                            <p><strong>🎒 O que levar:</strong> Documentos, roupas confortáveis e muita animação!</p>
+                            <p><strong>ℹ️ Observação:</strong> Paradas estratégicas para embarque conforme necessário</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item" onclick="toggleDetails(this)">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <img src="https://www.ahstatic.com/photos/9486_ho_00_p_1024x768.jpg" alt="Hotel Del Fiol - Tatuí" class="timeline-image">
+                    <div class="timeline-info">
+                        <div class="date-badge">🗓️ 09 de Novembro (Segunda)</div>
+                        <div class="timeline-title">
+                            <span class="location-icon">🛏️</span>
+                            <span>Chegada em Tatuí - SP</span>
+                        </div>
+                        <div class="timeline-description">
+                            Chegada após o almoço com hospedagem no Hotel Del Fiol para um merecido descanso. Hora de recarregar as energias para os próximos dias incríveis!
+                        </div>
+                        <button class="expand-btn">Ver mais detalhes</button>
+                        <div class="timeline-details">
+                            <p><strong>📍 Destino:</strong> Tatuí, São Paulo</p>
+                            <p><strong>🕐 Chegada prevista:</strong> Após o almoço</p>
+                            <p><strong>🏨 Hospedagem:</strong> Hotel Del Fiol - conforto e qualidade</p>
+                            <p><strong>🍽️ Incluso:</strong> Jantar e café da manhã</p>
+                            <p><strong>💤 Dica:</strong> Descanse bem para o grande momento do próximo dia!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item" onclick="toggleDetails(this)">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <img src="https://oimparcial.com.br/app/uploads/2023/11/Design-sem-nome-2-1.jpg" alt="Betel - Centro Mundial" class="timeline-image">
+                    <div class="timeline-info">
+                        <div class="date-badge">🗓️ 10 de Novembro (Terça)</div>
+                        <div class="timeline-title">
+                            <span class="location-icon">🏛️</span>
+                            <span>O Grande Momento - Visita à Betel</span>
+                        </div>
+                        <div class="timeline-description">
+                            O momento mais especial da nossa viagem! Visitaremos a Betel e almoçaremos no refeitório de visitantes. Uma experiência espiritual única e emocionante!
+                        </div>
+                        <button class="expand-btn">Ver mais detalhes</button>
+                        <div class="timeline-details">
+                            <p><strong>🌅 Manhã:</strong> Café da manhã e preparação especial</p>
+                            <p><strong>🏛️ Visita guiada:</strong> Instalações da Betel com guias especializados</p>
+                            <p><strong>🍽️ Almoço especial:</strong> Refeitório de visitantes</p>
+                            <p><strong>🚌 Próximo destino:</strong> Partida para Foz do Iguaçu, PR</p>
+                            <p><strong>🕰️ Chegada:</strong> 06:00 do dia seguinte</p>
+                            <a href="https://acrobat.adobe.com/id/urn:aaid:sc:VA6C2:b87881c8-13a2-451f-b212-1f82d3c0ae30" target="_blank" class="link-btn">📄 Ver Itinerário Completo</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item" onclick="toggleDetails(this)">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <img src="https://www.trilhaseaventuras.com.br/wp-content/uploads/2014/07/Nova-Cota-Compras-Paraguai-1.jpg" alt="Ciudad del Este - Compras" class="timeline-image">
+                    <div class="timeline-info">
+                        <div class="date-badge">🗓️ 11 de Novembro (Quarta)</div>
+                        <div class="timeline-title">
+                            <span class="flag">🇵🇾</span>
+                            <span>Compras em Ciudad del Este</span>
+                        </div>
+                        <div class="timeline-description">
+                            Dia de compras no Paraguai visitando os principais shoppings da cidade, seguido de reunião espiritual no Salão do Reino local. Uma experiência cultural única!
+                        </div>
+                        <button class="expand-btn">Ver mais detalhes</button>
+                        <div class="timeline-details">
+                            <p><strong>🕗 08:00:</strong> Saída para Ciudad del Este, Paraguai</p>
+                            <p><strong>🛍️ Compras:</strong> Principais shoppings e centros comerciais</p>
+                            <p><strong>💰 Dica:</strong> Melhores preços em eletrônicos, perfumes e roupas</p>
+                            <p><strong>🌙 À noite:</strong> Reunião de meio de semana no Salão do Reino local</p>
+                            <p><strong>🏨 Hospedagem:</strong> Hotel Rafain Centro - conforto e localização privilegiada</p>
+                            <a href="https://www.comprasparaguai.com.br/lojas/" target="_blank" class="link-btn">🛒 Ver Guia de Lojas</a>
+                            <a href="https://rafaincentro.com.br/o-hotel/" target="_blank" class="link-btn">🏨 Ver Hotel Rafain</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item" onclick="toggleDetails(this)">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <img src="https://viagem.cnnbrasil.com.br/wp-content/uploads/sites/5/2021/05/cataratas.jpg?w=1200&h=675&crop=1" alt="Cataratas do Iguaçu" class="timeline-image">
+                    <div class="timeline-info">
+                        <div class="date-badge">🗓️ 12 de Novembro (Quinta)</div>
+                        <div class="timeline-title">
+                            <span class="location-icon">🌊</span>
+                            <span>Cataratas do Iguaçu - Maravilha da Natureza</span>
+                        </div>
+                        <div class="timeline-description">
+                            Passeio ao Parque Nacional do Iguaçu com trilha pelas famosas Cataratas, uma das Sete Maravilhas da Natureza. Um espetáculo natural de tirar o fôlego!
+                        </div>
+                        <button class="expand-btn">Ver mais detalhes</button>
+                        <div class="timeline-details">
+                            <p><strong>🌅 Manhã:</strong> Café da manhã e preparação para o passeio</p>
+                            <p><strong>🏞️ Parque Nacional:</strong> Uma das mais belas reservas do mundo</p>
+                            <p><strong>🥾 Trilhas:</strong> Caminhadas seguras com vistas espetaculares</p>
+                            <p><strong>📸 Fotos incríveis:</strong> Cenários únicos para suas lembranças</p>
+                            <p><strong>🚌 Final do dia:</strong> Partida para Curitiba, PR</p>
+                            <p><strong>🦋 Fauna local:</strong> Possibilidade de avistar diversas espécies</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item" onclick="toggleDetails(this)">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <img src="https://www.viagensecaminhos.com/wp-content/uploads/2017/07/passeio-trem-curitiba-morretes.jpg" alt="Trem Serra do Mar" class="timeline-image">
+                    <div class="timeline-info">
+                        <div class="date-badge">🗓️ 13 de Novembro (Sexta)</div>
+                        <div class="timeline-title">
+                            <span class="location-icon">🚂</span>
+                            <span>Trem da Serra do Mar - Curitiba</span>
+                        </div>
+                        <div class="timeline-description">
+                            Experiência única no famoso Trem da Serra do Mar Paranaense, considerado um dos passeios de trem mais bonitos do mundo. Paisagens de cinema!
+                        </div>
+                        <button class="expand-btn">Ver mais detalhes</button>
+                        <div class="timeline-details">
+                            <p><strong>🕕 06:00:</strong> Chegada em Curitiba, PR</p>
+                            <p><strong>🕗 08:00:</strong> Embarque no Trem da Serra do Mar</p>
+                            <p><strong>🚂 Trajeto épico:</strong> Curitiba ➜ Morretes (110km de pura beleza)</p>
+                            <p><strong>🏔️ Paisagens:</strong> Mata Atlântica preservada e montanhas exuberantes</p>
+                            <p><strong>🍽️ Morretes:</strong> Almoço com comidas típicas paranaenses</p>
+                            <p><strong>🏨 Noite:</strong> Hospedagem confortável em Curitiba</p>
+                            <a href="https://serraverdeexpress.com.br/" target="_blank" class="link-btn">🚂 Serra Verde Express</a>
+                            <a href="https://www.uol.com.br/nossa/amp-stories/como-e-o-passeio-de-trem-curitiba-morretes-um-dos-mais-bonitos-do-mundo" target="_blank" class="link-btn">📰 Saiba Mais</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item" onclick="toggleDetails(this)">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <img src="https://www.julytur.com.br/assets/images/passeios-269/39c5d36524dacb27ba4e629b1338bfe3/9.png" alt="City Tour Curitiba" class="timeline-image">
+                    <div class="timeline-info">
+                        <div class="date-badge">🗓️ 14 de Novembro (Sábado)</div>
+                        <div class="timeline-title">
+                            <span class="location-icon">🌳</span>
+                            <span>City Tour em Curitiba</span>
+                        </div>
+                        <div class="timeline-description">
+                            Exploraremos as belezas de Curitiba com visita ao famoso Jardim Botânico e outros pontos turísticos icônicos. A capital ecológica do Brasil!
+                        </div>
+                        <button class="expand-btn">Ver mais detalhes</button>
+                        <div class="timeline-details">
+                            <p><strong>🌅 Manhã:</strong> Café da manhã e city tour panorâmico</p>
+                            <p><strong>🪷 Jardim Botânico:</strong> Estufa de cristal e jardins deslumbrantes</p>
+                            <p><strong>🏛️ Pontos turísticos:</strong> Ópera de Arame, Parque Tanguá e mais</p>
+                            <p><strong>🚌 Ônibus panorâmico:</strong> Tour completo pela cidade modelo</p>
+                            <p><strong>📸 Fotos especiais:</strong> Cenários únicos da capital paranaense</p>
+                            <p><strong>🏃‍♂️ Final:</strong> Partida para retorno à Bahia com o coração cheio!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>âmico</p>
+                            <p><strong>🪷 Jardim Botânico:</strong> Estufa de cristal e jardins deslumbrantes</p>
+                            <p><strong>🏛️ Pontos turísticos:</strong> Ópera de Arame, Parque Tanguá e mais</p>
+                            <p><strong>🚌 Ônibus panorâmico:</strong> Tour completo pela cidade modelo</p>
+                            <p><strong>📸 Fotos especiais:</strong> Cenários únicos da capital paranaense</p>
+                            <p><strong>🏃‍♂️ Final:</strong> Partida para retorno à Bahia com o coração cheio!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item" onclick="toggleDetails(this)">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Retorno para casa" class="timeline-image">
+                    <div class="timeline-info">
+                        <div class="date-badge">🗓️ 15 de Novembro (Domingo)</div>
+                        <div class="timeline-title">
+                            <span class="location-icon">🏡</span>
+                            <span>Chegada - De Volta ao Lar</span>
+                        </div>
+                        <div class="timeline-description">
+                            Final da nossa incrível jornada com chegada prevista no final do dia em Santa Cruz Cabrália e Porto Seguro. Voltamos com o coração cheio de experiências inesquecíveis!
+                        </div>
+                        <button class="expand-btn">Ver mais detalhes</button>
+                        <div class="timeline-details">
+                            <p><strong>📍 Destino final:</strong> Santa Cruz Cabrália e Porto Seguro</p>
+                            <p><strong>🕰️ Chegada prevista:</strong> Final do dia (por volta das 18h)</p>
+                            <p><strong>💭 Lembranças:</strong> Memórias inesquecíveis para toda vida!</p>
+                            <p><strong>📱 Compartilhe:</strong> Suas fotos e experiências incríveis</p>
+                            <p><strong>🤝 Agradecimento:</strong> Obrigado por fazer parte desta jornada especial!</p>
+                            <p><strong>💫 Até a próxima:</strong> Aguarde nossas futuras aventuras!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-section">
+            <h2>📞 Interessado na Excursão?</h2>
+            <p>Entre em contato conosco para mais informações sobre valores, formas de pagamento e disponibilidade!</p>
+            
+            <a href="https://wa.me/55XXXXXXXXX" class="contact-btn" target="_blank">
+                💬 WhatsApp - Fale Conosco
+            </a>
+            
+            <div class="contact-info">
+                <p>💰 <strong>Consulte valores e condições especiais de pagamento</strong></p>
+                <p>📋 <strong>Vagas limitadas - Reserve já a sua!</strong></p>
+                <p>🎒 <strong>Incluso: hospedagem, café da manhã, transporte e passeios</strong></p>
+                <p>📄 <strong>Documentação necessária: RG ou CNH dentro da validade</strong></p>
+                <p>⭐ <strong>Avaliação 5 estrelas - clientes satisfeitos!</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleDetails(element) {
+            element.classList.toggle('expanded');
+            const button = element.querySelector('.expand-btn');
+            
+            if (element.classList.contains('expanded')) {
+                button.textContent = 'Ver menos detalhes';
+                button.style.background = 'linear-gradient(135deg, #ff6b6b, #ee5a52)';
+            } else {
+                button.textContent = 'Ver mais detalhes';
+                button.style.background = 'linear-gradient(135deg, #4ecdc4, #44a08d)';
+            }
+        }
+
+        // Efeitos de animação quando elementos entram na tela
+        function isInViewport(element) {
+            const rect = element.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
+
+        function handleScroll() {
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            timelineItems.forEach((item, index) => {
+                if (isInViewport(item) && !item.classList.contains('animate')) {
+                    setTimeout(() => {
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateY(0)';
+                    }, index * 100);
+                }
+            });
+        }
+
+        // Efeito parallax suave para elementos flutuantes
+        function handleMouseMove(e) {
+            const floatingElements = document.querySelectorAll('.floating-element');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+
+            floatingElements.forEach((element, index) => {
+                const speed = (index + 1) * 0.5;
+                element.style.transform = `translate(${x * speed * 10}px, ${y * speed * 10}px)`;
+            });
+        }
+
+        // Efeito sparkle dinâmico
+        function createSparkle() {
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            timelineItems.forEach(item => {
+                const sparkles = item.querySelectorAll('.sparkle');
+                sparkles.forEach(sparkle => {
+                    setTimeout(() => {
+                        sparkle.style.animationDelay = Math.random() * 2 + 's';
+                    }, Math.random() * 1000);
+                });
+            });
+        }
+
+        // Event listeners
+        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('mousemove', handleMouseMove);
+        window.addEventListener('load', () => {
+            handleScroll();
+            createSparkle();
+        });
+
+        // Animação de hover para cards
+        document.addEventListener('DOMContentLoaded', function() {
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            
+            timelineItems.forEach(item => {
+                const content = item.querySelector('.timeline-content');
+                const image = item.querySelector('.timeline-image');
+                
+                item.addEventListener('mouseenter', function() {
+                    content.style.transform = 'translateY(-8px) scale(1.02)';
+                    if (image) {
+                        image.style.transform = 'scale(1.05)';
+                    }
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    content.style.transform = 'translateY(0) scale(1)';
+                    if (image) {
+                        image.style.transform = 'scale(1)';
+                    }
+                });
+            });
+
+            // Animação suave para botões
+            const buttons = document.querySelectorAll('.expand-btn, .link-btn, .contact-btn, .video-btn');
+            buttons.forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-2px) scale(1.05)';
+                });
+                
+                button.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+        });
+
+        // Smooth scroll para navegação
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
